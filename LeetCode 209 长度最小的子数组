@@ -1,0 +1,24 @@
+import "math"
+func minSubArrayLen(target int, nums []int) int {
+   ans:=math.MaxInt32 //设置一个超出边界的值
+   n:=len(nums)
+   i:=0
+   subL:=0 记录滑动窗口长度
+   sum:=0
+   if n==0{
+    return 0
+   }
+   for j:=0;j<len(nums);j++{
+    sum =sum+nums[j]
+    for sum>=target{  // 不能用if 用for
+        subL=j-i+1
+        ans=min(ans,subL)
+        sum=sum-nums[i]
+        i++
+    }
+   }
+   if ans==math.MaxInt32{
+    return 0
+   }
+    return ans
+   }
